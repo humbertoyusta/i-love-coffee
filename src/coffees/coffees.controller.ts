@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -11,7 +11,7 @@ export class CoffeesController {
         return `Coffee ${id}`;
     }
     @Post()
-    create(@Body() body : JSON) : JSON {
-        return body;
+    create(@Body() body) : string {
+        return `created ${body.type}`;
     }
 }
