@@ -9,6 +9,14 @@ import { Coffee } from 'src/entities/coffee.entity';
 export class CoffeesService {
     private coffeesList : Coffee[] = [];
     
+    getCoffees(): Coffee[] {
+        return this.coffeesList;
+    }
+
+    getCoffee(id: string): Coffee {
+        return this.coffeesList.find((c: Coffee) => (c.id == id));
+    }
+
     addCoffee (coffee : Coffee) : void {
         this.coffeesList.push(coffee);
     }
@@ -20,23 +28,11 @@ export class CoffeesService {
         return index != -1;
     }
 
-    getCoffees(): Coffee[] {
-        return this.coffeesList;
-    }
-
-    getCoffee(id: string): Coffee {
-        let index : number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
-        if (index != -1)
-            return this.coffeesList[index];
-        else
-            return undefined;
-    }
-
     updateCoffee(id: string,newCoffee: Coffee): void {
         let index : number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
-        if (index == -1)
-            this.coffeesList.push(newCoffee);
-        else
+        if (index != -1)
             this.coffeesList[index] = newCoffee;
+        else
+            this.addCoffee(newCoffee);
     }
 }
