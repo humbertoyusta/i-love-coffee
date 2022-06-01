@@ -31,4 +31,12 @@ export class CoffeesService {
         else
             return undefined;
     }
+
+    updateCoffee(id: string,newCoffee: Coffee): void {
+        let index : number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
+        if (index == -1)
+            this.coffeesList.push(newCoffee);
+        else
+            this.coffeesList[index] = newCoffee;
+    }
 }

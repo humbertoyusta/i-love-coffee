@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Put, Res } from '@nestjs/common';
 import { Coffee } from 'src/entities/coffee.entity';
 import { CoffeesService } from './coffees.service';
 
@@ -26,8 +26,8 @@ export class CoffeesController {
             response.status(HttpStatus.NOT_MODIFIED).send();
         }
     }
-    @Patch(':id')
-    update(@Param('id') id : string, @Body() body) : string {
-        return `updates the coffee with id ${id}`;
+    @Put(':id')
+    update(@Param('id') id : string, @Body() body) : void {
+        this.coffeeService.updateCoffee(id, body);
     }
 }
