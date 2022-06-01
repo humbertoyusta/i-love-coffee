@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Patch, Post, Put, Res } from '@nestjs/common';
 import { Coffee } from 'src/entities/coffee.entity';
 import { CoffeesService } from './coffees.service';
 
@@ -18,13 +18,8 @@ export class CoffeesController {
         this.coffeeService.addCoffee(body);
     }
     @Delete(':id')
-    delete(@Param('id') id : string, @Res() response) : void {
-        if (this.coffeeService.deleteCoffee(id)) {
-            response.status(HttpStatus.ACCEPTED).send();
-        }
-        else {
-            response.status(HttpStatus.NOT_MODIFIED).send();
-        }
+    delete(@Param('id') id : string) : void {
+        this.coffeeService.deleteCoffee(id);
     }
     @Put(':id')
     update(@Param('id') id : string, @Body() body) : void {
