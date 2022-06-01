@@ -10,9 +10,8 @@ export class CoffeesController {
         return this.coffeeService.getCoffees();
     }
     @Get(':id')
-    findOne (@Param('id') id : string) : string {
-        return `Coffee ${id}`;
-        // TO-DO
+    findOne (@Param('id') id : string) : Coffee {
+        return this.coffeeService.getCoffee(id);
     }
     @Post()
     create(@Body() body): void {

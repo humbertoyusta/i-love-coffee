@@ -23,4 +23,12 @@ export class CoffeesService {
     getCoffees(): Coffee[] {
         return this.coffeesList;
     }
+
+    getCoffee(id: string): Coffee {
+        let index : number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
+        if (index != -1)
+            return this.coffeesList[index];
+        else
+            return undefined;
+    }
 }
