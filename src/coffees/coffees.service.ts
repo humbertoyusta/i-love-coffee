@@ -13,8 +13,8 @@ export class CoffeesService {
         this.coffeesList.push(coffee);
     }
 
-    deleteCoffee (coffee : Coffee) : boolean {
-        let index : number = this.coffeesList.findIndex((c: Coffee) => (c.id == coffee.id));
+    deleteCoffee (id: string) : boolean {
+        let index : number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
         if (index != -1)
             this.coffeesList.splice(index, 1);
         return index != -1;
