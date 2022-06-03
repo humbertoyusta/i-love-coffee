@@ -33,7 +33,7 @@ export class CoffeesService {
             this.coffeesList.splice(index, 1);
     }
 
-    updateCoffee(id: string,newPartCoffee): void {
+    updateCoffee(id: string, newPartCoffee): void {
         let index: number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
         if (index != -1) {
             // update this.coffeesList[index] with newPartCoffee
