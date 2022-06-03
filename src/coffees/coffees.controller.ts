@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Patch, Post, Put, Res } from '@nestjs/common';
-import { Coffee } from 'src/entities/coffee.entity';
+import { Coffee } from 'src/coffees/entities/coffee.entity';
 import { CoffeesService } from './coffees.service';
 
 @Controller('coffees')

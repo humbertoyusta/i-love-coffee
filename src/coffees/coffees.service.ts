@@ -3,7 +3,7 @@ https://docs.nestjs.com/providers#services
 */
 
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Coffee } from 'src/entities/coffee.entity';
+import { Coffee } from 'src/coffees/entities/coffee.entity';
 
 @Injectable()
 export class CoffeesService {
