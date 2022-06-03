@@ -7,7 +7,7 @@ import { Coffee } from 'src/coffees/entities/coffee.entity';
 
 @Injectable()
 export class CoffeesService {
-    private coffeesList : Coffee[] = [];
+    private coffeesList: Coffee[] = [];
     
     getCoffees(): Coffee[] {
         return this.coffeesList;
@@ -21,7 +21,7 @@ export class CoffeesService {
             return coffee;
     }
 
-    addCoffee (coffee : Coffee) : void {
+    addCoffee (coffee) : void {
         this.coffeesList.push(coffee);
     }
 
@@ -33,8 +33,8 @@ export class CoffeesService {
             this.coffeesList.splice(index, 1);
     }
 
-    updateCoffee(id: string,newPartCoffee: Coffee): void {
-        let index : number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
+    updateCoffee(id: string,newPartCoffee): void {
+        let index: number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
         if (index != -1) {
             // update this.coffeesList[index] with newPartCoffee
         }
