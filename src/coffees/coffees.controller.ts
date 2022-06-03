@@ -21,7 +21,7 @@ export class CoffeesController {
     delete(@Param('id') id : string) : void {
         this.coffeeService.deleteCoffee(id);
     }
-    @Put(':id')
+    @Patch(':id')
     update(@Param('id') id : string, @Body() body) : void {
         this.coffeeService.updateCoffee(id, body);
     }

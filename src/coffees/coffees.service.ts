@@ -33,11 +33,12 @@ export class CoffeesService {
             this.coffeesList.splice(index, 1);
     }
 
-    updateCoffee(id: string,newCoffee: Coffee): void {
+    updateCoffee(id: string,newPartCoffee: Coffee): void {
         let index : number = this.coffeesList.findIndex((c: Coffee) => (c.id == id));
-        if (index != -1)
-            this.coffeesList[index] = newCoffee;
+        if (index != -1) {
+            // update this.coffeesList[index] with newPartCoffee
+        }
         else
-            this.addCoffee(newCoffee);
+            throw new NotFoundException(`Coffee with id ${id} not found`);
     }
 }
