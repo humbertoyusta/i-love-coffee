@@ -4,11 +4,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeesController } from './coffees/coffees.controller';
 import { CoffeesService } from './coffees/coffees.service';
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    CoffeesModule, 
+    CoffeesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
