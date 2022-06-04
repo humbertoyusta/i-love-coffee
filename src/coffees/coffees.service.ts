@@ -24,30 +24,34 @@ export class CoffeesService {
         const coffee: Coffee = await this.coffeeRepository.findOneBy({
             id: idToGet,
         });
-        if (typeof(coffee) === 'undefined')
+        if (!coffee)
             throw new NotFoundException(`Coffee with id ${idToGet} not found`);
         else
             return coffee;
     }
 
-    addCoffee (createCoffeeDto: CreateCoffeeDto) : any {
+    addCoffee (createCoffeeDto: CreateCoffeeDto) : Promise<Coffee> {
         const coffee: Coffee = this.coffeeRepository.create(createCoffeeDto);
         return this.coffeeRepository.save(coffee);
     }
 
     async deleteCoffee (id: number) : Promise<Coffee> {
         const coffee: Coffee = await this.getCoffee(id);
-        return this.coffeeRepository.remove(coffee);
-    }
-
-    async updateCoffee(id: string, updateCoffeeDto: UpdateCoffeeDto) {
-        const coffee: Coffee = await this.coffeeRepository.preload({
-            id: +id,
-            ...updateCoffeeDto,
-        })
         if (!coffee)
             throw new NotFoundException(`Coffee with id ${id} not found`);
         else
-            return coffee;
+            return this.coffeeRepository.remove(coffee);
+    }
+
+    async updateCoffee(idToUpdate: number, updateCoffeeDto: UpdateCoffeeDto): Promise<Coffee> {
+        let coffee: Coffee = await this.getCoffee(idToUpdate);
+        coffee = await this.coffeeRepository.preload({
+            id: +idToUpdate,
+            ...updateCoffeeDto,
+        })
+        if (!coffee)
+            throw new NotFoundException(`Coffee with id ${idToUpdate} not found`);
+        else
+            return this.coffeeRepository.save(coffee);
     }
 }

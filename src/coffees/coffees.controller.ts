@@ -16,15 +16,15 @@ export class CoffeesController {
         return this.coffeeService.getCoffee(parseInt(id));
     }
     @Post()
-    create(@Body() body: CreateCoffeeDto): void {
-        this.coffeeService.addCoffee(body);
+    create(@Body() body: CreateCoffeeDto): Promise<Coffee> {
+        return this.coffeeService.addCoffee(body);
     }
     @Delete(':id')
-    delete(@Param('id') id: string): void {
-        this.coffeeService.deleteCoffee(parseInt(id));
+    delete(@Param('id') id: string): Promise<Coffee> {
+        return this.coffeeService.deleteCoffee(parseInt(id));
     }
     @Patch(':id')
-    update(@Param('id') id: string, @Body() body: UpdateCoffeeDto): void {
-        this.coffeeService.updateCoffee(id, body);
+    update(@Param('id') id: string, @Body() body: UpdateCoffeeDto): Promise<Coffee> {
+        return this.coffeeService.updateCoffee(parseInt(id), body);
     }
 }
