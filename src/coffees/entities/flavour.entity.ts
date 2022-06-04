@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Coffee } from "./coffee.entity";
 
 @Entity()
 export class Flavour {
@@ -7,4 +8,10 @@ export class Flavour {
 
     @Column()
     name: string;
+
+    @ManyToMany(
+        type => Coffee, 
+        (coffee) => coffee.flavours
+    )
+    coffees: Coffee[]
 }
