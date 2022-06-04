@@ -30,7 +30,7 @@ export class CoffeesService {
             return coffee;
     }
 
-    addCoffee (createCoffeeDto: CreateCoffeeDto) : Promise<Coffee> {
+    async addCoffee (createCoffeeDto: CreateCoffeeDto) : Promise<Coffee> {
         const coffee: Coffee = this.coffeeRepository.create(createCoffeeDto);
         return this.coffeeRepository.save(coffee);
     }
