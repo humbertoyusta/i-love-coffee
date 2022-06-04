@@ -8,12 +8,12 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 export class CoffeesController {
     constructor(private readonly coffeeService: CoffeesService) {}
     @Get()
-    findAll (): Coffee[] {
+    findAll (): Promise<Coffee[]> {
         return this.coffeeService.getCoffees();
     }
     @Get(':id')
-    findOne (@Param('id') id: string): Coffee {
-        return this.coffeeService.getCoffee(id);
+    findOne (@Param('id') id: string): Promise<Coffee> {
+        return this.coffeeService.getCoffee(parseInt(id));
     }
     @Post()
     create(@Body() body: CreateCoffeeDto): void {
@@ -21,7 +21,7 @@ export class CoffeesController {
     }
     @Delete(':id')
     delete(@Param('id') id: string): void {
-        this.coffeeService.deleteCoffee(id);
+        this.coffeeService.deleteCoffee(parseInt(id));
     }
     @Patch(':id')
     update(@Param('id') id: string, @Body() body: UpdateCoffeeDto): void {
