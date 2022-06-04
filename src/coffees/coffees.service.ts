@@ -44,8 +44,7 @@ export class CoffeesService {
     }
 
     async updateCoffee(idToUpdate: number, updateCoffeeDto: UpdateCoffeeDto): Promise<Coffee> {
-        let coffee: Coffee = await this.getCoffee(idToUpdate);
-        coffee = await this.coffeeRepository.preload({
+        let coffee: Coffee = await this.coffeeRepository.preload({
             id: +idToUpdate,
             ...updateCoffeeDto,
         })
