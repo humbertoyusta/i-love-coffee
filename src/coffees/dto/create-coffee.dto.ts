@@ -5,7 +5,7 @@ export class CreateCoffeeDto {
 
     @IsString()
     brand: string;
-    
+
     @IsString({ each: true })
-    flavours?: string[];
+    flavours: string[];
 }
