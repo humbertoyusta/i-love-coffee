@@ -1,4 +1,11 @@
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity()
 export class Coffee{
+    @PrimaryGeneratedColumn()
     id: string;
-    type: string;
+    @Column()
+    brand: string;
+    @Column('json', { nullable: true })
+    flavours: string[];
 }
