@@ -6,18 +6,20 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Coffee } from 'src/coffees/entities/coffee.entity';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
-import { Repository } from 'typeorm';
+import { Connection, DataSource, Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Flavour } from './entities/flavour.entity';
+import { Event } from 'src/events/entities/event.entity'
 
 @Injectable()
 export class CoffeesService {
     constructor (
         @InjectRepository(Coffee)
-        private coffeeRepository: Repository<Coffee>,
+        private readonly coffeeRepository: Repository<Coffee>,
         @InjectRepository(Flavour)
-        private flavourRepository: Repository<Flavour>,
+        private readonly flavourRepository: Repository<Flavour>,
+        private readonly dataSource: DataSource,
     ) {}
     
     getCoffees(paginationQueryDto: PaginationQueryDto): Promise<Coffee[]> {
@@ -72,6 +74,30 @@ export class CoffeesService {
             throw new NotFoundException(`Coffee with id ${idToUpdate} not found`);
         else
             return this.coffeeRepository.save(coffee);
+    }
+
+    async reccomendCoffee(coffee: Coffee) {
+        const queryRunner = this.dataSource.createQueryRunner();
+        
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            coffee.reccomendations ++;
+
+            const event: Event = new Event();
+            event.name = 'reccomend_coffee';
+            event.type = 'coffee';
+            event.payload = {coffee: coffee.id};
+            
+            await queryRunner.manager.save(coffee);
+            await queryRunner.manager.save(event);
+
+            await queryRunner.commitTransaction();
+        } catch (err) {
+            await queryRunner.rollbackTransaction();
+        } finally {
+            await queryRunner.release()
+        }
     }
 
     private async loadFlavourByName(flavourName: string): Promise<Flavour> {
