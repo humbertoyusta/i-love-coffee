@@ -6,11 +6,14 @@ export class Coffee{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ nullable: true })
-    title: string;
+    @Column()
+    name: string;
 
     @Column()
     brand: string;
+
+    @Column({nullable: true})
+    description: string;
 
     @Column({default: 0})
     reccomendations: number;
