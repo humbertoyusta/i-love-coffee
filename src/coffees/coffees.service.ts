@@ -6,7 +6,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Coffee } from 'src/coffees/entities/coffee.entity';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
-import { Connection, DataSource, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Flavour } from './entities/flavour.entity';
