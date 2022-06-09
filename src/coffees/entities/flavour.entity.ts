@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Coffee } from "./coffee.entity";
 
 @Entity()
@@ -7,6 +7,7 @@ export class Flavour {
     id: number;
 
     @Column()
+    @Index()
     name: string;
 
     @ManyToMany(
