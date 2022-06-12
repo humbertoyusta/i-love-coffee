@@ -2,7 +2,7 @@
 https://docs.nestjs.com/providers#services
 */
 
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Coffee } from 'src/coffees/entities/coffee.entity';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
@@ -13,7 +13,7 @@ import { Flavour } from './entities/flavour.entity';
 import { Event } from 'src/events/entities/event.entity'
 import { COFFEE_BRANDS } from './coffees.constants';
 
-@Injectable()
+@Injectable({ scope: Scope.TRANSIENT })
 export class CoffeesService {
     constructor (
         @InjectRepository(Coffee)
