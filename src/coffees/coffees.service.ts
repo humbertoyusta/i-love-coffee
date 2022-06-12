@@ -23,7 +23,7 @@ export class CoffeesService {
         private readonly dataSource: DataSource,
         @Inject(COFFEE_BRANDS)
         private readonly coffeeBrands: string[],
-    ) {}
+    ) { console.log(coffeeBrands); }
     
     getCoffees(paginationQueryDto: PaginationQueryDto): Promise<Coffee[]> {
         return this.coffeeRepository.find({
