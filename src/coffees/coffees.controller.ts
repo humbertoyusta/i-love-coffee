@@ -9,10 +9,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Controller('coffees')
 export class CoffeesController {
-    constructor(
-        private readonly coffeeService: CoffeesService,
-        @Inject(REQUEST) private readonly request: Request,
-    ) {}
+    constructor(private readonly coffeeService: CoffeesService) {}
     @Get()
     findAll (@Query() paginationQueryDto: PaginationQueryDto): Promise<Coffee[]> {
         return this.coffeeService.getCoffees(paginationQueryDto);

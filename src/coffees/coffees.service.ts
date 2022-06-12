@@ -13,7 +13,7 @@ import { Flavour } from './entities/flavour.entity';
 import { Event } from 'src/events/entities/event.entity'
 import { COFFEE_BRANDS } from './coffees.constants';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class CoffeesService {
     constructor (
         @InjectRepository(Coffee)
