@@ -5,3 +5,5 @@ Already covered:
 1. Getting Started
 
 2. Creating a REST API application
+
+3. Add PostgreSQL with TypeORM
