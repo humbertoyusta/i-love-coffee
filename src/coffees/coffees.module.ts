@@ -4,7 +4,6 @@ https://docs.nestjs.com/modules
 
 import { Injectable, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DatabaseModule } from 'src/database/database.module';
 import { Event } from 'src/events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { CoffeesController } from './coffees.controller';
@@ -21,14 +20,7 @@ class CoffeeBrandsFactory {
 }
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Coffee, Flavour, Event]),
-        DatabaseModule.register({
-            type: 'postgres',
-            host: 'localhost',
-            password: '123',
-            port: 5432, 
-        })
-    ],
+    imports: [TypeOrmModule.forFeature([Coffee, Flavour, Event])],
     controllers: [CoffeesController],
     providers: [
         CoffeesService, 

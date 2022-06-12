@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeesRatingModule } from './coffees-rating/coffees-rating/coffees-rating.module';
-import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -19,8 +18,7 @@ import { DatabaseModule } from './database/database.module';
       database: 'postgres',
       autoLoadEntities: true,
       synchronize: true
-    }),
-    DatabaseModule
+    })
   ],
   controllers: [AppController],
   providers: [AppService],
