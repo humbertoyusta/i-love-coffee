@@ -7,3 +7,5 @@ Already covered:
 2. Creating a REST API application
 
 3. Add PostgreSQL with TypeORM
+
+4. Dependency Injection
