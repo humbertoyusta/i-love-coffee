@@ -22,9 +22,7 @@ export class CoffeesService {
         private readonly flavourRepository: Repository<Flavour>,
         private readonly dataSource: DataSource,
         private readonly configService: ConfigService,
-    ) {
-        console.log(configService.get('DATABASE_HOST', 'localhost'));
-    }
+    ) {}
     
     getCoffees(paginationQueryDto: PaginationQueryDto): Promise<Coffee[]> {
         return this.coffeeRepository.find({
