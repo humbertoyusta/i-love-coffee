@@ -8,9 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      ignoreEnvFile: true,
-    }),
+    ConfigModule.forRoot(),
     CoffeesModule,
     CoffeesRatingModule,
     TypeOrmModule.forRoot({
