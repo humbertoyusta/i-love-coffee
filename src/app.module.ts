@@ -9,7 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      ignoreEnvFile: true,
     }),
     CoffeesModule,
     CoffeesRatingModule,
