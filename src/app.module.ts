@@ -5,10 +5,19 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeesRatingModule } from './coffees-rating/coffees-rating/coffees-rating.module';
 import { ConfigModule } from '@nestjs/config';
+import * as Joi from 'joi';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      validationSchema: Joi.object({
+        DATABASE_HOST: Joi.string().required(),
+        DATABASE_PORT: Joi.number().default(5432),
+        DATABASE_USER: Joi.string().default('postgres'),
+        DATABASE_PASSWORD: Joi.string().required(),
+        DATABASE_NAME: Joi.string().default('postgres'),
+      }),
+    }),
     CoffeesModule,
     CoffeesRatingModule,
     TypeOrmModule.forRoot({
