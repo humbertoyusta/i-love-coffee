@@ -11,6 +11,7 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Flavour } from './entities/flavour.entity';
 import { Event } from 'src/events/entities/event.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class CoffeesService {
@@ -20,7 +21,10 @@ export class CoffeesService {
         @InjectRepository(Flavour)
         private readonly flavourRepository: Repository<Flavour>,
         private readonly dataSource: DataSource,
-    ) {}
+        private readonly configService: ConfigService,
+    ) {
+        console.log(configService.get('DATABASE_HOST', 'localhost'));
+    }
     
     getCoffees(paginationQueryDto: PaginationQueryDto): Promise<Coffee[]> {
         return this.coffeeRepository.find({
