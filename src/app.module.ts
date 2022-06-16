@@ -15,12 +15,14 @@ import appConfig, { JoiValidateDatabaseInfo } from './config/app.config';
     }),
     CoffeesModule,
     CoffeesRatingModule,
-    TypeOrmModule.forRoot({
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({
       type: 'postgres',
       autoLoadEntities: true,
       synchronize: true,
       ...appConfig().database,
-    })
+      }),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
