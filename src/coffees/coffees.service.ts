@@ -2,7 +2,7 @@
 https://docs.nestjs.com/providers#services
 */
 
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Coffee } from 'src/coffees/entities/coffee.entity';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
@@ -11,7 +11,8 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Flavour } from './entities/flavour.entity';
 import { Event } from 'src/events/entities/event.entity';
-import { ConfigService } from '@nestjs/config';
+import { ConfigService, ConfigType } from '@nestjs/config';
+import configCoffees from './coffees/config.coffees';
 
 @Injectable()
 export class CoffeesService {
@@ -22,7 +23,9 @@ export class CoffeesService {
         private readonly flavourRepository: Repository<Flavour>,
         private readonly dataSource: DataSource,
         private readonly configService: ConfigService,
-    ) {}
+        @Inject(configCoffees.KEY)
+        private readonly coffeesConfig: ConfigType<typeof configCoffees>,
+    ) {  }
     
     getCoffees(paginationQueryDto: PaginationQueryDto): Promise<Coffee[]> {
         return this.coffeeRepository.find({
