@@ -8,14 +8,6 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Controller('coffees')
-@UsePipes(new ValidationPipe({
-    whitelist: true,
-    forbidNonWhitelisted: true,
-    transform: true,
-    transformOptions: {
-      enableImplicitConversion: true,
-    },
-  }))
 export class CoffeesController {
     constructor(private readonly coffeeService: CoffeesService) {}
     @Get()
