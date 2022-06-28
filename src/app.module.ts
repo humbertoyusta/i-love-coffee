@@ -6,10 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeesRatingModule } from './coffees-rating/coffees-rating/coffees-rating.module';
 import { ConfigModule } from '@nestjs/config';
 import appConfig, { JoiValidateDatabaseInfo } from './config/app.config';
-import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { ApiKeyGuard } from './common/guards/api-key.guard';
-import { CommonModule } from './common/common/common.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
