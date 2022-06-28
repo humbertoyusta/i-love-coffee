@@ -6,8 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeesRatingModule } from './coffees-rating/coffees-rating/coffees-rating.module';
 import { ConfigModule } from '@nestjs/config';
 import appConfig, { JoiValidateDatabaseInfo } from './config/app.config';
-import { APP_PIPE } from '@nestjs/core';
+import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { CommonModule } from './common/common.module';
+import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
 
 @Module({
   imports: [
@@ -41,6 +42,10 @@ import { CommonModule } from './common/common.module';
         },
       }),
     },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TimeoutInterceptor,
+    }
   ],
 })
 export class AppModule { }
