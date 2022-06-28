@@ -9,6 +9,7 @@ import appConfig, { JoiValidateDatabaseInfo } from './config/app.config';
 import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ApiKeyGuard } from './common/guards/api-key.guard';
+import { CommonModule } from './common/common/common.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ApiKeyGuard } from './common/guards/api-key.guard';
       ...appConfig().database,
       }),
     }),
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [
@@ -44,10 +46,6 @@ import { ApiKeyGuard } from './common/guards/api-key.guard';
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: ApiKeyGuard,
     },
   ],
 })
