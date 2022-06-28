@@ -4,6 +4,7 @@ import { Request } from 'express';
 import { Coffee } from 'src/coffees/entities/coffee.entity';
 import { Public } from 'src/common/decorators/public.decorator';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
+import { ParseIntPipe } from 'src/common/parse-int.pipe';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -17,8 +18,8 @@ export class CoffeesController {
         return this.coffeeService.getCoffees(paginationQueryDto);
     }
     @Get(':id')
-    findOne (@Param('id') id: string): Promise<Coffee> {
-        return this.coffeeService.getCoffee(parseInt(id));
+    findOne (@Param('id', ParseIntPipe) id): Promise<Coffee> {
+        return this.coffeeService.getCoffee(id);
     }
     @Post()
     create(@Body() body: CreateCoffeeDto): Promise<Coffee> {
