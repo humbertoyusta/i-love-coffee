@@ -6,8 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeesRatingModule } from './coffees-rating/coffees-rating/coffees-rating.module';
 import { ConfigModule } from '@nestjs/config';
 import appConfig, { JoiValidateDatabaseInfo } from './config/app.config';
-import { APP_FILTER, APP_PIPE } from '@nestjs/core';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { APP_PIPE } from '@nestjs/core';
 import { CommonModule } from './common/common.module';
 
 @Module({
@@ -41,10 +40,6 @@ import { CommonModule } from './common/common.module';
           enableImplicitConversion: true,
         },
       }),
-    },
-    {
-      provide: APP_FILTER,
-      useClass: HttpExceptionFilter,
     },
   ],
 })
