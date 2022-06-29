@@ -4,13 +4,13 @@ https://docs.nestjs.com/providers#services
 
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Coffee } from 'src/coffees/entities/coffee.entity';
-import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
+import { Coffee } from './entities/coffee.entity';
+import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { DataSource, Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Flavour } from './entities/flavour.entity';
-import { Event } from 'src/events/entities/event.entity';
+import { Event } from '../events/entities/event.entity';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import configCoffees from './coffees/config.coffees';
 
