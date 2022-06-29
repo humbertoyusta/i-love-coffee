@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, NotFoundException, Param, Patch, Post, Put, Query, Res, UsePipes, ValidationPipe } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
+import { ApiForbiddenResponse } from '@nestjs/swagger';
 import { Request } from 'express';
 import { Coffee } from 'src/coffees/entities/coffee.entity';
 import { Public } from 'src/common/decorators/public.decorator';
@@ -17,6 +18,7 @@ export class CoffeesController {
     findAll (@Query() paginationQueryDto: PaginationQueryDto): Promise<Coffee[]> {
         return this.coffeeService.getCoffees(paginationQueryDto);
     }
+    @ApiForbiddenResponse({description: 'Forbidden'})
     @Get(':id')
     findOne (@Param('id', ParseIntPipe) id): Promise<Coffee> {
         return this.coffeeService.getCoffee(id);
