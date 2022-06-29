@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, NotFoundException, Param, Patch, Post, Put, Query, Res, UsePipes, ValidationPipe } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
-import { ApiForbiddenResponse } from '@nestjs/swagger';
+import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { Coffee } from 'src/coffees/entities/coffee.entity';
 import { Public } from 'src/common/decorators/public.decorator';
@@ -10,6 +10,7 @@ import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
     constructor(private readonly coffeeService: CoffeesService) {}
