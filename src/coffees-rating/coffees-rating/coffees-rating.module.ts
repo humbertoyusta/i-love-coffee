@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CoffeesModule } from 'src/coffees/coffees.module';
+import { CoffeesModule } from '../../coffees/coffees.module';
 import { CoffeesRatingService } from './coffees-rating.service';
 
 @Module({

@@ -2,10 +2,10 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, NotFoundEx
 import { REQUEST } from '@nestjs/core';
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
-import { Coffee } from 'src/coffees/entities/coffee.entity';
-import { Public } from 'src/common/decorators/public.decorator';
-import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
-import { ParseIntPipe } from 'src/common/parse-int.pipe';
+import { Coffee } from '../coffees/entities/coffee.entity';
+import { Public } from '../common/decorators/public.decorator';
+import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
+import { ParseIntPipe } from '../common/parse-int.pipe';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
