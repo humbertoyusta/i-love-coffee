@@ -10,6 +10,7 @@ import { CoffeesService } from './coffees.service';
 import { Coffee } from './entities/coffee.entity';
 import { Flavour } from './entities/flavour.entity';
 import configCoffees from './coffees/config.coffees';
+import { NotFoundException } from '@nestjs/common';
 
 type MockRepository<T = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 const createMockRepository = <T = any>(): MockRepository<T> => ({
@@ -39,5 +40,31 @@ describe('CoffeesService', () => {
 
     it('should be defined', () => {
         expect(coffeesService).toBeDefined();
+    });
+
+    describe('getCoffee', () => {
+        describe('when coffee with ID exists', () => {
+            it('should return the coffee object', async () => {
+                const coffeeId = 1;
+                const expectedCoffee = {};
+
+                coffeesRepository.findOne.mockReturnValue(expectedCoffee);
+                const coffee = await coffeesRepository.findOne(coffeeId);
+                expect(coffee).toEqual(expectedCoffee);
+            });
+        });
+        describe('when coffee with ID not exists', () => {
+            it('should throw NotFoundException', async () => {
+                const coffeeId = 1;
+                
+                coffeesRepository.findOne.mockReturnValue(undefined);
+                try {
+                    const coffee = await coffeesRepository.findOne(coffeeId);
+                } catch (err) {
+                    expect(err).toBeInstanceOf(NotFoundException);
+                    expect(err.message).toEqual(`Coffee with id ${coffeeId} not found`);
+                }
+            });
+        });
     });
 });
