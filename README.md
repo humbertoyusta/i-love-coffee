@@ -9,3 +9,11 @@ Already covered:
 3. Add PostgreSQL with TypeORM
 
 4. Dependency Injection
+
+5. Application Configuration
+
+6. Other Building Blocks by Example
+
+7. Generating OpenAPI Specification
+
+8. Testing
